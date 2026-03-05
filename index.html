@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RS Abogados | Barraza, Rojas & Salinas — Antofagasta, Chile</title>
+  <meta name="description" content="Estudio jurídico de primer nivel en Antofagasta. Derecho Civil, Laboral, Minero, Comercial y Familia. Más de dos décadas de trayectoria en el norte de Chile." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Tenor+Sans&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ===== VARIABLES ===== */
+    :root {
+      --gold-lt:   #dab144;
+      --gold-dk:   #765213;
+      --gold-mid:  #b8922e;
+      --black:     #000000;
+      --black-soft:#0d0d0d;
+      --black-mid: #111111;
+      --black-card:#161616;
+      --white:     #ffffff;
+      --muted:     rgba(218,177,68,0.45);
+      --border:    rgba(218,177,68,0.18);
+      --grad:      linear-gradient(135deg, var(--gold-lt) 0%, var(--gold-dk) 100%);
+      --grad-h:    linear-gradient(135deg, #f0c860 0%, var(--gold-lt) 50%, var(--gold-dk) 100%);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-display: 'Tenor Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--black); color: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== GOLD TEXT UTILS ===== */
+    .gold { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gold-line { width: 48px; height: 1.5px; background: var(--grad); display: block; }
+    .gold-line.center { margin: 0 auto; }
+    .eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.9rem;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.95rem 2.2rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+    }
+    .btn-gold {
+      background: var(--grad);
+      color: var(--black);
+      font-weight: 600;
+    }
+    .btn-gold:hover { background: var(--grad-h); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(218,177,68,0.25); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--gold-lt);
+      border: 1px solid rgba(218,177,68,0.4);
+    }
+    .btn-ghost:hover { border-color: var(--gold-lt); background: rgba(218,177,68,0.06); transform: translateY(-2px); }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.68rem 6%;
+      display: flex;
+      align-items: center;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    header.scrolled {
+      background: var(--black);
+      box-shadow: 0 1px 0 rgba(218,177,68,0.15);
+    }
+    .h-logo-wrap {
+      position: absolute;
+      left: 20%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    header.scrolled .h-logo-wrap { opacity: 1; pointer-events: auto; }
+    .h-logo {
+      height: 72px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      flex: 1;
+      justify-content: center;
+    }
+    nav a {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.25s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--grad);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    nav a:hover { color: var(--gold-lt); }
+    nav a:hover::after { transform: scaleX(1); }
+    .h-cta { margin-left: 1.5rem; }
+
+    /* Hamburger */
+    #hamburger {
+      display: none;
+      position: fixed;
+      right: 5%;
+      top: 1rem;
+      height: calc(1.68rem * 2 + 36px);
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 10000;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    #hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--gold-lt);
+      transition: all 0.32s;
+      transform-origin: center;
+    }
+    #hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    #hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile nav */
+    #mobile-nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 78%;
+      max-width: 300px;
+      height: 100vh;
+      background: var(--black-mid);
+      border-left: 1px solid var(--border);
+      z-index: 9998;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.2rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(.77,0,.175,1);
+    }
+    #mobile-nav.open { transform: translateX(0); }
+    #mobile-nav a {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.25s;
+    }
+    #mobile-nav a:hover { color: var(--gold-lt); }
+    .nav-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 9997;
+    }
+    .nav-overlay.open { display: block; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 6% 90px;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+    /* Textura de ruido sutil */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1575505586569-646b2ca898fc?w=1800&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      filter: grayscale(100%);
+      opacity: 1;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.84);
+      mix-blend-mode: multiply;
+    }
+    /* Borde dorado decorativo */
+    .hero-frame {
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(218,177,68,0.1);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-frame::before, .hero-frame::after {
+      content: '';
+      position: absolute;
+      width: 24px; height: 24px;
+      border-color: var(--gold-lt);
+      border-style: solid;
+      opacity: 0.5;
+    }
+    .hero-frame::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+    .hero-frame::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+    .hero-logo-wrap {
+      width: 180px;
+      margin: 0 auto 2rem;
+    }
+    .hero-logo-wrap img {
+      width: 100%;
+    }
+    .hero-byline {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(218,177,68,0.6);
+      margin-bottom: 1.6rem;
+    }
+    #hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+    }
+    #hero h1 .rs {
+      font-size: clamp(2.25rem, 5.5vw, 5rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: block;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 0.9;
+    }
+    #hero h1 .sub {
+      font-size: clamp(0.85rem, 1.4vw, 1rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.45);
+      display: block;
+      margin-top: 0.6rem;
+    }
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 2rem auto;
+      max-width: 320px;
+    }
+    .hero-divider span { flex: 1; height: 1px; background: var(--grad); opacity: 0.4; }
+    .hero-divider i { color: var(--gold-mid); font-size: 0.9rem; }
+    .hero-lead {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.9;
+      max-width: 540px;
+      margin: 0 auto 2.8rem;
+      letter-spacing: 0.03em;
+    }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4.5rem; }
+
+    /* ===== FIRMA ===== */
+    #firma {
+      background: var(--black-mid);
+      padding: 100px 6%;
+      position: relative;
+      border-top: 1px solid var(--border);
+    }
+    .firma-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+      align-items: center;
+    }
+    .firma-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 0.3rem;
+    }
+    .firma-text h2 em {
+      font-style: italic;
+      display: block;
+    }
+    .firma-text p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.9;
+      font-weight: 300;
+      margin-top: 1.2rem;
+    }
+    .firma-text .btn { margin-top: 2rem; }
+    .firma-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .firma-stat {
+      background: var(--black-card);
+      padding: 2.2rem 1.8rem;
+      transition: background 0.25s;
+    }
+    .firma-stat:hover { background: #1a1a1a; }
+    .firma-stat-num {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 600;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .firma-stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    /* ===== PRÁCTICA ===== */
+    #practica {
+      padding: 100px 6%;
+      position: relative;
+      overflow: hidden;
+    }
+    #practica::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%);
+      opacity: 1;
+    }
+    #practica::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.91);
+      mix-blend-mode: multiply;
+    }
+    .practica-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .practica-header { text-align: center; margin-bottom: 3.5rem; }
+    .practica-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+    }
+    .practica-header h2 em { font-style: italic; }
+    .practica-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .practica-card {
+      background: var(--black);
+      padding: 2.4rem 2rem;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .practica-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--grad);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .practica-card:hover { background: #0d0d0d; }
+    .practica-card:hover::before { transform: scaleX(1); }
+    .practica-icon {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.4rem;
+      transition: border-color 0.3s;
+    }
+    .practica-card:hover .practica-icon { border-color: rgba(218,177,68,0.4); }
+    .practica-icon i {
+      font-size: 1rem;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .practica-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+    .practica-card p {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ===== EQUIPO ===== */
+    #equipo {
+      background: var(--black-mid);
+      padding: 100px 6%;
+      border-top: 1px solid var(--border);
+    }
+    .equipo-inner { max-width: 1100px; margin: 0 auto; }
+    .equipo-header { text-align: center; margin-bottom: 3.5rem; }
+    .equipo-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+    }
+    .equipo-header h2 em { font-style: italic; }
+    .socios-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .socio-card {
+      background: var(--black-card);
+      padding: 0 0 2rem;
+      text-align: center;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .socio-card:hover { background: #131313; }
+    .socio-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      margin-bottom: 1.3rem;
+      position: relative;
+    }
+    .socio-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top;
+      filter: grayscale(100%);
+      transition: transform 0.4s, filter 0.4s;
+    }
+    .socio-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.75);
+      mix-blend-mode: multiply;
+      transition: opacity 0.4s;
+    }
+    .socio-card:hover .socio-photo img { transform: scale(1.04); filter: grayscale(80%); }
+    .socio-card:hover .socio-photo::after { opacity: 0.6; }
+    .socio-card h4 {
+      padding: 0 1.2rem;
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+    .socio-card span {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(218,177,68,0.5);
+      display: block;
+      padding: 0 1.2rem;
+    }
+
+    /* ===== PROCESO ===== */
+    #proceso {
+      padding: 100px 6%;
+      position: relative;
+      overflow: hidden;
+    }
+    #proceso::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%);
+      opacity: 1;
+    }
+    #proceso::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.90);
+      mix-blend-mode: multiply;
+    }
+    .proceso-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .proceso-header { text-align: center; margin-bottom: 3.5rem; }
+    .proceso-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+    }
+    .proceso-header h2 em { font-style: italic; }
+    .pasos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: var(--border);
+    }
+    .paso {
+      background: var(--black);
+      padding: 2.4rem 1.8rem;
+      border-right: none;
+      transition: background 0.3s;
+    }
+    .paso:hover { background: #0a0a0a; }
+    .paso-num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 600;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.4;
+      margin-bottom: 1rem;
+    }
+    .paso h3 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+    .paso p { font-size: 0.83rem; color: rgba(255,255,255,0.45); line-height: 1.7; font-weight: 300; }
+
+    /* ===== CTA ===== */
+    #cta {
+      background: var(--black-mid);
+      padding: 100px 6%;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Ornamento central */
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(218,177,68,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+    #cta h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    #cta h2 em { font-style: italic; display: block; }
+    #cta p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 2.4rem;
+    }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== FAQ ===== */
+    #faq {
+      padding: 100px 6%;
+      background: var(--black);
+    }
+    .faq-inner { max-width: 720px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+    }
+    .faq-header h2 em { font-style: italic; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.4rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      gap: 1rem;
+      text-align: center;
+    }
+    .faq-q span {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      flex: 1;
+      text-align: center;
+    }
+    .faq-icon {
+      width: 24px; height: 24px;
+      border: 1px solid rgba(218,177,68,0.35);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold-lt);
+      font-size: 0.75rem;
+      transition: all 0.3s;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      background: var(--grad);
+      border-color: transparent;
+      color: var(--black);
+    }
+    .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.active .faq-body { max-height: 300px; }
+    .faq-body p {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.85;
+      padding-bottom: 1.4rem;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    /* ===== CONTACTO ===== */
+    #contacto {
+      padding: 100px 6%;
+      position: relative;
+      overflow: hidden;
+      background: var(--black-mid);
+      border-top: 1px solid var(--border);
+    }
+    #contacto::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%);
+      opacity: 1;
+    }
+    #contacto::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.91);
+      mix-blend-mode: multiply;
+    }
+    .contacto-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .contacto-info .eyebrow { }
+    .contacto-info h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 0.3rem;
+    }
+    .contacto-info h2 em { font-style: italic; display: block; }
+    .contacto-info > p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 2.2rem;
+    }
+    .c-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.3rem;
+    }
+    .c-icon {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.3s;
+    }
+    .c-item:hover .c-icon { border-color: rgba(218,177,68,0.4); }
+    .c-icon i {
+      font-size: 0.9rem;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .c-item-txt span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(218,177,68,0.5);
+      margin-bottom: 0.15rem;
+    }
+    .c-item-txt p { font-size: 0.87rem; color: rgba(255,255,255,0.7); }
+    /* Form */
+    .contacto-form {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      padding: 2.8rem;
+    }
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .f-group { margin-bottom: 1.1rem; }
+    .f-group label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(218,177,68,0.55);
+      margin-bottom: 0.45rem;
+    }
+    .f-group input,
+    .f-group select,
+    .f-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(218,177,68,0.12);
+      border-bottom: 1px solid rgba(218,177,68,0.22);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.87rem;
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+    }
+    .f-group input::placeholder,
+    .f-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+    .f-group input:focus,
+    .f-group select:focus,
+    .f-group textarea:focus { border-color: rgba(218,177,68,0.4); border-bottom-color: var(--gold-lt); }
+    .f-group select option { background: var(--black); }
+    .f-group textarea { resize: vertical; min-height: 110px; }
+    .f-submit { width: 100%; margin-top: 0.6rem; justify-content: center; }
+
+    /* ===== MAPA ===== */
+    #mapa { height: 420px; }
+    #mapa iframe { width: 100%; height: 100%; border: none; filter: grayscale(100%) brightness(0.6) contrast(1.2); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      padding: 55px 6% 28px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand-logo img {
+      height: 44px;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+    .footer-brand p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1.4rem;
+    }
+    .f-socials { display: flex; gap: 0.6rem; }
+    .f-social {
+      width: 30px; height: 30px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(218,177,68,0.5);
+      font-size: 0.8rem;
+      transition: all 0.25s;
+    }
+    .f-social:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(218,177,68,0.55);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col li a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 300;
+      transition: color 0.25s;
+    }
+    .footer-col li a:hover { color: var(--gold-lt); }
+    .footer-bottom {
+      border-top: 1px solid rgba(218,177,68,0.08);
+      padding-top: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .footer-bottom p { font-size: 0.73rem; color: rgba(255,255,255,0.22); }
+    .footer-bottom a { color: var(--gold-mid); }
+
+    /* ===== WA FLOAT ===== */
+    .wa-float {
+      position: fixed;
+      bottom: 26px; right: 26px;
+      width: 52px; height: 52px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-size: 1.4rem;
+      z-index: 999;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.3);
+      animation: wapulse 2.5s infinite;
+      transition: transform 0.25s;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    @keyframes wapulse {
+      0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.3); }
+      50%      { box-shadow: 0 4px 28px rgba(37,211,102,0.55), 0 0 0 7px rgba(37,211,102,0.07); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .firma-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+      .practica-grid { grid-template-columns: repeat(2, 1fr); }
+      .socios-grid { grid-template-columns: repeat(3, 1fr); }
+      .pasos-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .contacto-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { display: none; }
+      #hamburger { display: flex; }
+      header { display: flex; justify-content: center; }
+      .h-logo-wrap { position: static; }
+      .h-logo { display: block; margin: 0 auto; }
+      .practica-grid { grid-template-columns: 1fr; }
+      .socios-grid { grid-template-columns: repeat(2, 1fr); }
+      .pasos-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+      .footer-brand img { margin: 0 auto 1.2rem; }
+      .f-socials { justify-content: center; }
+      .footer-bottom { justify-content: center; text-align: center; }
+      #hero { padding-top: 80px; }
+      #firma, #practica, #equipo, #proceso, #cta, #faq, #contacto { padding: 70px 5%; }
+      .f-row { grid-template-columns: 1fr; }
+      .contacto-form { padding: 1.8rem; }
+      .contacto-info h2, .contacto-info > p, .contacto-info .eyebrow { text-align: center; }
+      .gold-line { margin: 0.9rem auto 1.4rem; }
+      .c-item { flex-direction: column; align-items: center; text-align: center; }
+      .footer-col { text-align: center; }
+      #mapa { height: 300px; }
+    }
+
+    @media (max-width: 500px) {
+      #hero h1 .rs { font-size: 4rem; }
+      .firma-stats { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .socios-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- HEADER -->
+<header id="header">
+  <div class="h-logo-wrap"><img src="./logo.png" alt="RS Abogados" class="h-logo" /></div>
+  <nav>
+    <a href="#practica">Práctica</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#contacto" class="btn btn-gold h-cta">Consultar</a>
+  </nav>
+</header>
+<button id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+
+<div class="nav-overlay" id="nav-overlay"></div>
+<nav id="mobile-nav">
+  <a href="#practica">Práctica</a>
+  <a href="#equipo">Equipo</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#faq">Preguntas</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-frame"></div>
+  <div class="hero-inner">
+    <div class="hero-logo-wrap">
+      <img src="./logo.png" alt="RS Abogados" />
+    </div>
+    <p class="hero-byline">Barraza, Rojas &amp; Salinas — Antofagasta</p>
+    <h1>
+      Estudio Jurídico
+      <span class="rs">RS</span>
+      <span class="sub">Abogados — Consultores</span>
+    </h1>
+    <div class="hero-divider">
+      <span></span>
+      <i class="fa-solid fa-scale-balanced"></i>
+      <span></span>
+    </div>
+    <p class="hero-lead">Abogados Rojas Serrano y Cía Ltda. — Más de dos décadas de ejercicio en el norte de Chile, con presencia en Derecho Civil, Laboral, Minero, Comercial y de Familia.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn btn-gold">
+        <i class="fa-brands fa-whatsapp"></i> Consulta ahora
+      </a>
+      <a href="#practica" class="btn btn-ghost">Ver especialidades</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FIRMA -->
+<section id="firma">
+  <div class="firma-inner">
+    <div class="firma-text">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>Un estudio con<br/><em>historia y criterio</em></h2>
+      <div class="gold-line" style="margin:1rem 0 1.4rem;"></div>
+      <p>Somos un estudio jurídico consolidado en Antofagasta, la capital minera de Chile. Nuestra firma reúne a un equipo de abogados con amplia experiencia en diversas ramas del derecho, capaces de entregar una asesoría integral y estratégica a personas, empresas y organizaciones.</p>
+      <p>Nuestro enfoque está en la excelencia técnica y el acompañamiento cercano a cada cliente, desde la primera consulta hasta la resolución definitiva del asunto.</p>
+      <a href="#contacto" class="btn btn-gold">Contactar al estudio</a>
+    </div>
+    <div class="firma-stats">
+      <div class="firma-stat">
+        <div class="firma-stat-num">+20</div>
+        <div class="firma-stat-label">Años de trayectoria</div>
+      </div>
+      <div class="firma-stat">
+        <div class="firma-stat-num">5</div>
+        <div class="firma-stat-label">Abogados en el equipo</div>
+      </div>
+      <div class="firma-stat">
+        <div class="firma-stat-num">6</div>
+        <div class="firma-stat-label">Áreas de práctica</div>
+      </div>
+      <div class="firma-stat">
+        <div class="firma-stat-num">Norte</div>
+        <div class="firma-stat-label">Cobertura nacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÁCTICA -->
+<section id="practica">
+  <div class="practica-inner">
+    <div class="practica-header">
+      <span class="eyebrow">Áreas de práctica</span>
+      <h2>Derecho con <em>profundidad y alcance</em></h2>
+      <div class="gold-line center" style="margin-top:1rem;"></div>
+    </div>
+    <div class="practica-grid">
+
+      <div class="practica-card">
+        <div class="practica-icon"><i class="fa-solid fa-gavel"></i></div>
+        <h3>Derecho Civil</h3>
+        <p>Contratos, obligaciones, responsabilidad civil extracontractual, bienes raíces, posesiones y acciones ordinarias ante tribunales civiles.</p>
+      </div>
+
+      <div class="practica-card">
+        <div class="practica-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <h3>Derecho Laboral</h3>
+        <p>Defensa de trabajadores y empleadores. Despidos, finiquitos, demandas por tutela laboral, accidentes del trabajo y Ley Karin.</p>
+      </div>
+
+      <div class="practica-card">
+        <div class="practica-icon"><i class="fa-solid fa-mountain"></i></div>
+        <h3>Derecho Minero</h3>
+        <p>Constitución y saneamiento de concesiones mineras, contratos de operación, servidumbres mineras y asesoría a empresas del sector.</p>
+      </div>
+
+      <div class="practica-card">
+        <div class="practica-icon"><i class="fa-solid fa-building"></i></div>
+        <h3>Derecho Comercial y Empresarial</h3>
+        <p>Constitución de sociedades, contratos mercantiles, asesoría permanente a empresas, derecho societario y negociaciones comerciales.</p>
+      </div>
+
+      <div class="practica-card">
+        <div class="practica-icon"><i class="fa-solid fa-people-roof"></i></div>
+        <h3>Derecho de Familia</h3>
+        <p>Divorcios, alimentos, cuidado personal, regímenes patrimoniales, herencias, posesiones efectivas y testamentos.</p>
+      </div>
+
+      <div class="practica-card">
+        <div class="practica-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Derecho Penal</h3>
+        <p>Defensa penal en causas por delitos económicos, laborales y generales. Representación ante el Ministerio Público y tribunales penales.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="equipo-inner">
+    <div class="equipo-header">
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2>Los abogados detrás <em>del estudio</em></h2>
+      <div class="gold-line center" style="margin-top:1rem;"></div>
+    </div>
+    <div class="socios-grid">
+      <div class="socio-card">
+        <div class="socio-photo">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&q=80" alt="Pedro Mario Rojas Serrano" />
+        </div>
+        <h4>Pedro Mario<br/>Rojas Serrano</h4>
+        <span>Socio fundador</span>
+      </div>
+      <div class="socio-card">
+        <div class="socio-photo">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&q=80" alt="Pablo Andrés Rojas Martínez" />
+        </div>
+        <h4>Pablo Andrés<br/>Rojas Martínez</h4>
+        <span>Socio</span>
+      </div>
+      <div class="socio-card">
+        <div class="socio-photo">
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=300&h=300&fit=crop&q=80" alt="Francisco Barraza Lara" />
+        </div>
+        <h4>Francisco<br/>Barraza Lara</h4>
+        <span>Socio</span>
+      </div>
+      <div class="socio-card">
+        <div class="socio-photo">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&q=80" alt="Nelly Álvarez Paniagua" />
+        </div>
+        <h4>Nelly Álvarez<br/>Paniagua</h4>
+        <span>Abogada</span>
+      </div>
+      <div class="socio-card">
+        <div class="socio-photo">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&q=80" alt="Bernardo Yevenez Carvajal" />
+        </div>
+        <h4>Bernardo Yevenez<br/>Carvajal</h4>
+        <span>Abogado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="proceso-inner">
+    <div class="proceso-header">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>Cuatro pasos hacia <em>la resolución</em></h2>
+      <div class="gold-line center" style="margin-top:1rem;"></div>
+    </div>
+    <div class="pasos-grid">
+      <div class="paso">
+        <div class="paso-num">01</div>
+        <h3>Primera consulta</h3>
+        <p>Analizamos tu situación en detalle. Escuchamos, evaluamos y te entregamos una orientación clara sobre el camino legal a seguir.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">02</div>
+        <h3>Diagnóstico y estrategia</h3>
+        <p>Revisamos la documentación, identificamos los derechos y riesgos involucrados, y definimos la estrategia más conveniente para tu caso.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">03</div>
+        <h3>Ejecución y representación</h3>
+        <p>Actuamos: negociaciones, presentación de escritos, comparecencia en tribunales y coordinación con organismos competentes.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">04</div>
+        <h3>Cierre y seguimiento</h3>
+        <p>Te acompañamos hasta la resolución definitiva, con comunicación constante y transparencia en cada etapa del proceso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <span class="eyebrow">Hablemos</span>
+    <h2>¿Tienes un asunto<br/><em>legal que resolver?</em></h2>
+    <div class="hero-divider">
+      <span></span>
+      <i class="fa-solid fa-scale-balanced"></i>
+      <span></span>
+    </div>
+    <p>Los plazos legales son determinantes. Contáctanos hoy y recibe la orientación de nuestros abogados. Primera consulta sin compromiso.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/56966114883" target="_blank" class="btn btn-gold">
+        <i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp
+      </a>
+      <a href="#contacto" class="btn btn-ghost">Enviar formulario</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que suelen <em>preguntarnos</em></h2>
+      <div class="gold-line center" style="margin-top:1rem;"></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Atienden de forma online?</span>
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </button>
+      <div class="faq-body">
+        <p>Sí. Ofrecemos atención presencial en nuestra oficina de Antofagasta y también de forma remota mediante videollamada, para clientes en todo Chile.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Tienen experiencia en el sector minero?</span>
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </button>
+      <div class="faq-body">
+        <p>Sí. Estamos ubicados en Antofagasta, corazón de la minería chilena. Contamos con experiencia en constitución de concesiones, contratos mineros y asesoría legal a empresas y contratistas del sector.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Cuánto cuesta una consulta?</span>
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </button>
+      <div class="faq-body">
+        <p>Los honorarios varían según el tipo y complejidad del asunto. Contáctanos directamente para que podamos entregarte una cotización personalizada según tu situación específica.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Pueden representarme en tribunales de otras regiones?</span>
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </button>
+      <div class="faq-body">
+        <p>Sí. Contamos con capacidad para actuar en distintas jurisdicciones del país, coordinando con abogados colaboradores cuando el caso lo requiere fuera de la región de Antofagasta.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span>¿Qué información debo llevar a la primera consulta?</span>
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </button>
+      <div class="faq-body">
+        <p>Toda la documentación relacionada con tu caso: contratos, notificaciones, sentencias previas, comunicaciones escritas o cualquier antecedente relevante. Con más información, mejor podremos orientarte desde el primer momento.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-info">
+      <span class="eyebrow">Contacto</span>
+      <h2>Cuéntenos<br/><em>su caso</em></h2>
+      <div class="gold-line" style="margin:1rem 0 1.4rem;"></div>
+      <p>Complete el formulario o contáctenos directamente. Nuestro equipo responde a la brevedad para coordinar una consulta.</p>
+
+      <div class="c-item">
+        <div class="c-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="c-item-txt">
+          <span>WhatsApp</span>
+          <p>+56 9 6611 4883</p>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon"><i class="fa-regular fa-envelope"></i></div>
+        <div class="c-item-txt">
+          <span>Email</span>
+          <p>mrojas@mariorojas.cl</p>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="c-item-txt">
+          <span>Dirección</span>
+          <p>Copiapó 739, Oficina 302<br/>Edificio El Ancla — Antofagasta</p>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon"><i class="fa-solid fa-globe"></i></div>
+        <div class="c-item-txt">
+          <span>Sitio web</span>
+          <p>www.abogadosbarrazarojas.cl</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacto-form">
+      <form id="contactForm">
+        <div class="f-row">
+          <div class="f-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Su nombre completo" required />
+          </div>
+          <div class="f-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" placeholder="+56 9 0000 0000" required />
+          </div>
+        </div>
+        <div class="f-group">
+          <label for="area">Área legal</label>
+          <select id="area">
+            <option value="">Seleccione un área</option>
+            <option>Derecho Civil</option>
+            <option>Derecho Laboral</option>
+            <option>Derecho Minero</option>
+            <option>Derecho Comercial y Empresarial</option>
+            <option>Derecho de Familia</option>
+            <option>Derecho Penal</option>
+            <option>Otra consulta</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label for="mensaje">Describa su situación</label>
+          <textarea id="mensaje" placeholder="Cuéntenos brevemente su caso..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold f-submit">
+          <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<div id="mapa">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3568.1!2d-70.3978!3d-23.6509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96af2b9e5d4a1d1b%3A0x400a!2sCopay%C3%B3%20739%2C%20Antofagasta!5e0!3m2!1ses!2scl!4v1"
+    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo"><img src="./logo.png" alt="RS Abogados" /></div>
+        <p>Abogados Rojas Serrano y Cía Ltda. Estudio jurídico con presencia en Antofagasta y cobertura en el norte de Chile.</p>
+        <div class="f-socials">
+          <a href="https://wa.me/56966114883" target="_blank" class="f-social" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:mrojas@mariorojas.cl" class="f-social" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Práctica</h4>
+        <ul>
+          <li><a href="#practica">Derecho Civil</a></li>
+          <li><a href="#practica">Derecho Laboral</a></li>
+          <li><a href="#practica">Derecho Minero</a></li>
+          <li><a href="#practica">Derecho Comercial</a></li>
+          <li><a href="#practica">Derecho de Familia</a></li>
+          <li><a href="#practica">Derecho Penal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#firma">El estudio</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#proceso">Cómo trabajamos</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/56966114883" target="_blank">+56 9 6611 4883</a></li>
+          <li><a href="mailto:mrojas@mariorojas.cl">mrojas@mariorojas.cl</a></li>
+          <li><a href="http://www.abogadosbarrazarojas.cl" target="_blank">abogadosbarrazarojas.cl</a></li>
+          <li><a href="#contacto">Copiapó 739, Of. 302</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Abogados Rojas Serrano y Cía Ltda. Todos los derechos reservados.</p>
+      <p>Desarrollado por <a href="https://www.instagram.com/sageedev/" target="_blank">@sageeDev</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/56966114883" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+  // Navbar scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Hamburger
+  const hbg     = document.getElementById('hamburger');
+  const mNav    = document.getElementById('mobile-nav');
+  const overlay = document.getElementById('nav-overlay');
+  function toggleNav() {
+    const open = !mNav.classList.contains('open');
+    hbg.classList.toggle('open', open);
+    mNav.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  hbg.addEventListener('click', toggleNav);
+  overlay.addEventListener('click', toggleNav);
+  document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => {
+    hbg.classList.remove('open');
+    mNav.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!wasActive) item.classList.add('active');
+    });
+  });
+
+  // Form WhatsApp
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre   = document.getElementById('nombre').value;
+    const telefono = document.getElementById('telefono').value;
+    const area     = document.getElementById('area').value;
+    const mensaje  = document.getElementById('mensaje').value;
+    let txt = 'Estimados, me comunico con RS Abogados. Mi nombre es *' + nombre + '* y necesito asesoría legal.';
+    if (area)    txt += '\n\n*Área:* ' + area;
+    if (mensaje) txt += '\n\n*Consulta:*\n' + mensaje;
+    txt += '\n\n*Teléfono:* ' + telefono;
+    window.open('https://wa.me/56966114883?text=' + encodeURIComponent(txt), '_blank');
+  });
+</script>
+</body>
+</html>
